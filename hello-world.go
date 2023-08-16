@@ -138,4 +138,92 @@ func main() {
 	whatAmI("hey")
 
 	//________________________________________________________
+	// Arrays
+
+	// a numbered sequence of elements of a specific length
+	// less common than slices (below) but more useful in special scenarios
+	// by default, an array is zero-valued
+
+	// array that will hold exactly 5 ints
+	// the type of elements and length are both part of the array's type
+	var arr [5]int
+	fmt.Println("emp:", arr)
+	// setting value at an index
+	arr[4] = 100
+	fmt.Println("set:", arr)
+	fmt.Println("get:", arr[4])
+	fmt.Println("We can print the length with builtin len:", len(arr))
+
+	// declaring and initializing an array in one line
+	brr := [5]int{1, 2, 3, 4, 5}
+	fmt.Println("dcl:", brr)
+
+	// multi-dimensional arrays (via types)
+	var twoD [2][3]int
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 3; j++ {
+			twoD[i][j] = i + j
+		}
+	}
+	fmt.Println("2d: ", twoD)
+
+	//________________________________________________________
+	// Slices
+
+	// give a more powerful interface to sequences than arrays
+	// unlike arrays, slices are typed only by the elements they contain
+	// an uninitialized slice equals to nil and has length 0
+	var s []string
+	fmt.Println("uninit:", s, s == nil, len(s) == 0)
+
+	// to create an empty slice with some length, we use the builtin make
+	// by default, the capacity of a new slice is equal to its length
+	// if we know it's going to grow, it's possible to pass a capacity explicity
+	//   as an additional parameter to make
+	s = make([]string, 3)
+	fmt.Println("emp:", s, "len:", len(s), "cap:", cap(s))
+
+	// we can set and get values at indexes just like arrays
+	s[0] = "a"
+	fmt.Println("set:", s)
+	fmt.Println("get:", s[0])
+	fmt.Println("len:", len(s))
+
+	// we can also append new values to slices with builtin append
+	s = append(s, "b")
+	s = append(s, "c", "d", "e")
+	// there is a gap since s[1] and s[2] were not filled
+	fmt.Println("apd:", s, "len:", len(s), "cap:", cap(s))
+
+	// slices can also be copy'd
+	csl := make([]string, len(s))
+	copy(csl, s)
+	fmt.Println("cpy:", csl)
+
+	// we can also slice slices with a range of indexes
+	l := s[2:5]
+	fmt.Println("sl1:", l)
+
+	l = s[:5]
+	fmt.Println("sl2", l)
+
+	l = s[2:]
+	fmt.Println("sl3", l)
+
+	// we can also declare and init a variable for slice in a single line
+	tlc := []string{"g", "h", "i"}
+	fmt.Println("dcl:", tlc)
+
+	// slices can be also composed into multiple dimensions
+	twoD2 := make([][]int, 3)
+	for i := 0; i < 3; i++ {
+		innerLen := i + 1
+		twoD2[i] = make([]int, innerLen)
+		for j := 0; j < innerLen; j++ {
+			twoD2[i][j] = i + j
+		}
+	}
+	fmt.Println("2d: ", twoD2)
+
+	//________________________________________________________
 }
