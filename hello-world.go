@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
+
+const s string = "constant string"
 
 func main() {
 	// Hello World
@@ -20,8 +25,23 @@ func main() {
 	var d int // zero-value initialization (0 in this case since its an int)
 	fmt.Println(d)
 
-	f := "this variable was initialized with the := operator"
+	e := "this variable was initialized with the := operator"
 	// equivalent to var f string = ""
 	// this syntax is only available inside functions
+	fmt.Println(e)
+
+	// Constants
+	fmt.Println(s)
+	// constant expressions perform arithmetic with arbitrary precision
+	const n = 500000000
+
+	// a numeric constant has not type until it's given one
+	const f = 3e20 / n
+	// no type
 	fmt.Println(f)
+	// given type
+	fmt.Println(int64(f))
+
+	fmt.Println(math.Sin(n))
+
 }
