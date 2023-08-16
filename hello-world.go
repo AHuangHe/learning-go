@@ -11,10 +11,12 @@ func main() {
 	// Hello World
 	fmt.Println("Hello World")
 
+	//________________________________________________________
 	// Values / Value types
 	fmt.Println("1 + 1.0 = ", 2.0)
 	fmt.Println(!true || true && false)
 
+	//________________________________________________________
 	// Variables
 	var a = "this is a var"
 	fmt.Println(a)
@@ -30,6 +32,7 @@ func main() {
 	// this syntax is only available inside functions
 	fmt.Println(e)
 
+	//________________________________________________________
 	// Constants
 	fmt.Println(s)
 	// constant expressions perform arithmetic with arbitrary precision
@@ -44,4 +47,35 @@ func main() {
 
 	fmt.Println(math.Sin(n))
 
+	//________________________________________________________
+	// For Loop
+
+	// the only looping construct in Go
+
+	i := 1
+	for i <= 3 {
+		fmt.Println(i)
+		i = i + 1
+	}
+
+	// classic for-loop
+	for j := 7; j <= 9; j++ {
+		fmt.Println(j)
+	}
+
+	// for without a condition (basically like a while loop)
+	for {
+		fmt.Println("loop unconditionally until break/return")
+		break
+	}
+
+	// can also continue to next iteration
+	for n := 0; n <= 5; n++ {
+		if n%2 == 0 {
+			continue
+		}
+		fmt.Println(n)
+	}
+
+	//________________________________________________________
 }
