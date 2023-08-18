@@ -42,6 +42,20 @@ func sum(nums ...int) {
 }
 
 //________________________________________________________
+// Closures and Anonymous Functions
+
+// Go supports anonymous functions, which can form closures
+// useful for when you want an inline function without having to name it
+
+// this function returns another function, which we define anonymously in the body
+// the returned function closes over the variable i to form a closure
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
 
 //________________________________________________________
 
@@ -73,5 +87,20 @@ func main() {
 	nums := []int{1, 2, 3, 4}
 	sum(nums...)
 
+	//________________________________________________________
+	// Closures and Anonymous Functions
+
+	// we call intSeq, assigning the result to nextInt
+	nextInt := intSeq()
+	// this function value captures its own i value,
+	// which will be updated each time we call nextInt
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+
+	// the state is unique to that particular function
+	// the following function will have its own value and state
+	newInts := intSeq()
+	fmt.Println(newInts())
 	//________________________________________________________
 }
